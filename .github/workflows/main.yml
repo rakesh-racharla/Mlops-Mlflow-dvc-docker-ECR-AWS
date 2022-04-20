@@ -21,8 +21,8 @@ jobs:
           docker build --build-arg AWS_ACCOUNT_ID=${{ secrets.AWS_ACCOUNT_ID }} \
                        --build-arg AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
                        --build-arg AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
-                       --tag mlops-basics .
+                       --tag racharlarakesh123/mlops-basics .
       - name: Push to ECR
         run: |
-          docker push racharlarakesh123/mlops-basics:tagname
+          docker push racharlarakesh123/mlops-basics
 
