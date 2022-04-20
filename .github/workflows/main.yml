@@ -24,12 +24,12 @@ jobs:
                        --tag mlops-basics .
       - name: Build, tag, and push the image to Amazon ECR
         id: build-image
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: ${{ secrets.REPO_NAME }}
         run: |
           echo "Pushing image to ECR..."
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:mlops-basics:latest
+          aws ecr get-login-password --region ap-south-1 | docker login --username AWS ${{ secrets.AWS_SECRET_ACCESS_KEY }} 032951020984.dkr.ecr.ap-south-1.amazonaws.com
+          docker tag mlops-basics 032951020984.dkr.ecr.ap-south-1.amazonaws.com/mlops-basics:latest
+          docker push 032951020984.dkr.ecr.ap-south-1.amazonaws.com/mlops-basics:latest
+          
       - name: Push2ECR
         id: ecr
         uses: jwalton/gh-ecr-push@v1
