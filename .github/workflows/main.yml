@@ -24,5 +24,6 @@ jobs:
                        --tag racharlarakesh123/mlops-basics .
       - name: Push to ECR
         run: |
+          docker login --username racharlarakesh123 --password Rockrocky@1
           docker push racharlarakesh123/mlops-basics
 
