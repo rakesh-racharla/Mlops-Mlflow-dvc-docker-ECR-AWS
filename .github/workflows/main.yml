@@ -31,5 +31,8 @@ jobs:
           region: ap-south-1
       - name: Push to ECR
         run: |
-          docker tag mlops-basics ${{ steps.ecr.outputs.account }}.dkr.ecr.us-east-1.amazonaws.com/mlops-basics:v1
-          docker push ${{ steps.ecr.outputs.account }}.dkr.ecr.us-east-1.amazonaws.com/mlops-basics:v1
+          aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/t3c7d4f4
+          docker tag mlops-basics public.ecr.aws/t3c7d4f4/mlops-basics:latest
+          docker push public.ecr.aws/t3c7d4f4/mlops-basics:latest
+          #docker tag mlops-basics ${{ steps.ecr.outputs.account }}.dkr.ecr.us-east-1.amazonaws.com/mlops-basics:v1
+          #docker push ${{ steps.ecr.outputs.account }}.dkr.ecr.us-east-1.amazonaws.com/mlops-basics:v1
