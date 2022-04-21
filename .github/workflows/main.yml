@@ -22,8 +22,19 @@ jobs:
                        --build-arg AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
                        --build-arg AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
                        --tag racharlarakesh123/mlops-basics .
-      - name: Push to ECR
+      - name: Push to Dockerhub
         run: |
           docker login --username racharlarakesh123 --password Rockrocky@1
           docker push racharlarakesh123/mlops-basics
+      - name: Login to ECR
+        id: ecr
+        uses: jwalton/gh-ecr-login@v1
+        with:
+          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          region: ap-south-1
+      - name: Push to ECR
+        run: |
+          docker tag racharlarakesh123/mlops-basics ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/my-image:v1
+          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/my-image:v1
 
