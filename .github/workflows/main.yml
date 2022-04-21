@@ -35,6 +35,6 @@ jobs:
           region: ap-south-1
       - name: Push to ECR
         run: |
-          docker tag racharlarakesh123/mlops-basics ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/my-image:v1
-          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/my-image:v1
+          docker tag racharlarakesh123/mlops-basics ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/mlopstest:latest
+          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/mlopstest:latest
 
