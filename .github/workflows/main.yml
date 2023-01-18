@@ -24,7 +24,7 @@ jobs:
                        --tag racharlarakesh123/mlops-basics .
       - name: Push to Dockerhub
         run: |
-          docker login --username racharlarakesh123 --password Rockrocky@1
+          docker login --username racharlarakesh123 --password XXXXXXXXXX
           docker push racharlarakesh123/mlops-basics
       - name: Login to ECR
         id: ecr
